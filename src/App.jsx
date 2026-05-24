@@ -852,7 +852,6 @@ function ContactPage({ dark, card, border, text, muted, bg }) {
       <div style={{ display: "flex", gap: 20, justifyContent: "center", flexWrap: "wrap", maxWidth: 700, margin: "0 auto 80px" }}>
         {[
           { icon: "✉️", label: "Email", val: "sameed.dawar@gmail.com", href: "mailto:sameed.dawar@gmail.com", color: C.purple },
-          { icon: "📞", label: "Phone", val: "+92 300 0000000", href: "tel:+923000000000", color: C.teal },
         ].map(c => (
           <Reveal key={c.label} delay={0.1}>
             <ContactTile c={c} card={card} border={border} text={text} muted={muted} dark={dark} />
