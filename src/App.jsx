@@ -72,6 +72,7 @@ function Reveal({ children, delay = 0, style = {} }) {
 const C = {
   purple: "#7C6AFA",
   teal: "#4CC9A8",
+  tealDeep: "#1F8F72",
   darkBg: "#0d0d1a",
   darkCard: "#13132a",
   darkBorder: "rgba(124,106,250,0.18)",
@@ -268,7 +269,7 @@ function HeroSection({ dark, text, muted, bg, setPage }) {
   return (
     <section style={{ minHeight: "100vh", position: "relative", display: "flex", alignItems: "center", padding: "120px 5% 80px", overflow: "hidden" }}>
       {/* Animated particle field */}
-      <ParticleField style={{ opacity: dark ? 0.9 : 0.55, zIndex: 0 }} />
+      <ParticleField style={{ opacity: dark ? 0.9 : 0.5, zIndex: 0 }} />
       {/* Blobs */}
       <div style={{ position: "absolute", top: "10%", right: "8%", width: 420, height: 420, borderRadius: "60% 40% 30% 70% / 50% 60% 40% 50%", background: "radial-gradient(circle, rgba(124,106,250,0.18) 0%, transparent 70%)", filter: "blur(40px)", animation: "blobFloat 8s ease-in-out infinite" }} />
       <div style={{ position: "absolute", bottom: "15%", right: "25%", width: 280, height: 280, borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", background: "radial-gradient(circle, rgba(76,201,168,0.15) 0%, transparent 70%)", filter: "blur(30px)", animation: "blobFloat 10s ease-in-out infinite reverse" }} />
@@ -276,7 +277,7 @@ function HeroSection({ dark, text, muted, bg, setPage }) {
       <style>{`@keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(15px,-20px) scale(1.05);}}@keyframes scrollBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}`}</style>
 
       <div style={{ maxWidth: 760, position: "relative", zIndex: 2 }}>
-        <div style={{ ...anim(0.1), display: "inline-block", background: `linear-gradient(135deg, rgba(124,106,250,0.15), rgba(76,201,168,0.15))`, border: `1px solid rgba(124,106,250,0.3)`, borderRadius: 20, padding: "6px 16px", fontSize: 13, color: C.teal, fontWeight: 500, marginBottom: 24 }}>
+        <div style={{ ...anim(0.1), display: "inline-block", background: `linear-gradient(135deg, rgba(124,106,250,0.15), rgba(76,201,168,0.15))`, border: `1px solid rgba(124,106,250,0.3)`, borderRadius: 20, padding: "6px 16px", fontSize: 13, color: dark ? C.teal : C.tealDeep, fontWeight: 500, marginBottom: 24 }}>
           ✦ Available for freelance
         </div>
         <h1 style={{ ...anim(0.2), fontSize: "clamp(42px, 7vw, 82px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-2px", marginBottom: 16 }}>
@@ -399,7 +400,7 @@ function AboutSection({ dark, card, border, text, muted, bg }) {
 
   return (
     <section style={{ padding: "100px 5%", background: dark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)" }}>
-      <SectionLabel label="About Me" />
+      <SectionLabel label="About Me" dark={dark} />
       <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.4fr", gap: isMobile ? 36 : 60, alignItems: "center", maxWidth: 1100, margin: "0 auto" }}>
 
         {/* Photo card */}
@@ -481,7 +482,7 @@ function ExperienceSection({ dark, card, border, text, muted }) {
 
   return (
     <section style={{ padding: "100px 5%" }}>
-      <SectionLabel label="Experience" />
+      <SectionLabel label="Experience" dark={dark} />
       <h2 style={{ fontSize: "clamp(26px,3.5vw,40px)", fontWeight: 800, marginBottom: 60, maxWidth: 1100, margin: "0 auto 60px" }}>Work History</h2>
       <div style={{ maxWidth: 800, margin: "0 auto", position: "relative" }}>
         {/* Line */}
@@ -522,7 +523,7 @@ function EducationSection({ dark, card, border, text, muted }) {
 
   return (
     <section style={{ padding: "80px 5% 120px", background: dark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)" }}>
-      <SectionLabel label="Education" />
+      <SectionLabel label="Education" dark={dark} />
       <h2 style={{ fontSize: "clamp(26px,3.5vw,40px)", fontWeight: 800, marginBottom: 48, maxWidth: 1100, margin: "0 auto 48px" }}>Academic Background</h2>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(290px,1fr))", gap: 24, maxWidth: 1000, margin: "0 auto" }}>
         {edu.map((e, i) => (
@@ -623,6 +624,13 @@ function PortfolioPage({ dark, card, border, text, muted, bg }) {
     },
   ];
 
+  const uiuxProjects = [
+    { title: "SaaS Analytics Dashboard", desc: "End-to-end product design for a B2B analytics platform — data-dense views made calm and legible through clear hierarchy, a flexible component system, and a considered dark theme.", tags: ["UI/UX", "Dashboard", "Design System"], kind: "web", color: "#7C6AFA" },
+    { title: "Fintech Mobile App", desc: "A consumer finance app covering onboarding, transactions, and budgeting. Designed for one-handed use with accessible contrast, haptic-friendly targets, and a friendly, trustworthy tone.", tags: ["UI/UX", "Mobile", "Prototype"], kind: "mobile", color: "#4CC9A8" },
+    { title: "E-commerce Redesign", desc: "Reworked a cluttered storefront into a focused shopping flow — streamlined product pages, a frictionless cart, and a checkout that lifted completion in usability testing.", tags: ["UI/UX", "Web", "Conversion"], kind: "web", color: "#FF8C42" },
+    { title: "Design System & Tokens", desc: "Built a scalable Figma design system — tokens, components, and documentation — so a growing product team could ship consistent, on-brand interfaces faster.", tags: ["UI/UX", "Design System", "Figma"], kind: "system", color: "#F7C948" },
+  ];
+
   const allItems = [
     ...logos.map(l => ({ ...l, category: "logo", type: "logo" })),
     ...socialProjects.map(s => ({ ...s, category: "social", type: "social" })),
@@ -656,7 +664,7 @@ function PortfolioPage({ dark, card, border, text, muted, bg }) {
 
       <Reveal>
         <div style={{ maxWidth: 1100, margin: "0 auto 40px" }}>
-          <div style={{ fontSize: 12, letterSpacing: 3, color: C.teal, fontWeight: 600, marginBottom: 10 }}>SELECTED WORK</div>
+          <div style={{ fontSize: 12, letterSpacing: 3, color: dark ? C.teal : C.tealDeep, fontWeight: 600, marginBottom: 10 }}>SELECTED WORK</div>
           <h1 style={{ fontSize: "clamp(32px,5vw,60px)", fontWeight: 900 }}>Portfolio</h1>
         </div>
       </Reveal>
@@ -680,15 +688,15 @@ function PortfolioPage({ dark, card, border, text, muted, bg }) {
         </div>
       </Reveal>
 
-      {/* UI/UX placeholder */}
+      {/* UI/UX grid */}
       {activeTab === "uiux" && (
-        <Reveal>
-          <div style={{ maxWidth: 1100, margin: "0 auto", textAlign: "center", padding: "80px 20px", border: `2px dashed ${C.purple}44`, borderRadius: 24 }}>
-            <div style={{ fontSize: 48, marginBottom: 16 }}>🎛️</div>
-            <h3 style={{ fontWeight: 700, fontSize: 20, marginBottom: 10 }}>UI/UX Projects Coming Soon</h3>
-            <p style={{ color: muted, fontSize: 15 }}>Case studies and product design work will be added here shortly.</p>
-          </div>
-        </Reveal>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px,1fr))", gap: 24, maxWidth: 1100, margin: "0 auto 60px" }}>
+          {uiuxProjects.map((item, i) => (
+            <Reveal key={`uiux-${i}`} delay={i * 0.06}>
+              <UIUXProjectCard item={item} dark={dark} card={card} border={border} text={text} muted={muted} />
+            </Reveal>
+          ))}
+        </div>
       )}
 
       {/* Grid */}
@@ -780,6 +788,95 @@ function Lightbox({ lightbox, setLightbox, dark }) {
   );
 }
 
+function UIUXMock({ kind, color }) {
+  // Lightweight CSS "mockup" preview — no image asset required.
+  const bar = (w, o = 0.9) => (
+    <div style={{ height: 6, width: w, borderRadius: 3, background: `rgba(255,255,255,${o})` }} />
+  );
+  if (kind === "mobile") {
+    return (
+      <div style={{ width: 92, height: 168, borderRadius: 18, background: "rgba(0,0,0,0.28)", border: "2px solid rgba(255,255,255,0.5)", padding: 10, display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ height: 30, borderRadius: 8, background: "rgba(255,255,255,0.85)" }} />
+        {bar("80%", 0.7)}{bar("60%", 0.5)}
+        <div style={{ display: "flex", gap: 6, marginTop: 4 }}>
+          <div style={{ flex: 1, height: 34, borderRadius: 8, background: "rgba(255,255,255,0.7)" }} />
+          <div style={{ flex: 1, height: 34, borderRadius: 8, background: "rgba(255,255,255,0.45)" }} />
+        </div>
+        {bar("70%", 0.4)}
+      </div>
+    );
+  }
+  if (kind === "system") {
+    return (
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, width: 150 }}>
+        {[0.9, 0.7, 0.5, 0.6, 0.85, 0.4, 0.5, 0.75, 0.6].map((o, i) => (
+          <div key={i} style={{ aspectRatio: "1", borderRadius: 8, background: `rgba(255,255,255,${o})` }} />
+        ))}
+      </div>
+    );
+  }
+  // web/browser frame
+  return (
+    <div style={{ width: 190, height: 130, borderRadius: 12, background: "rgba(0,0,0,0.28)", border: "2px solid rgba(255,255,255,0.5)", overflow: "hidden" }}>
+      <div style={{ height: 20, background: "rgba(255,255,255,0.25)", display: "flex", alignItems: "center", gap: 5, padding: "0 10px" }}>
+        {[0, 1, 2].map(i => <div key={i} style={{ width: 7, height: 7, borderRadius: "50%", background: "rgba(255,255,255,0.7)" }} />)}
+      </div>
+      <div style={{ padding: 12, display: "flex", gap: 10 }}>
+        <div style={{ width: 40, display: "flex", flexDirection: "column", gap: 6 }}>
+          {bar("100%", 0.6)}{bar("80%", 0.4)}{bar("90%", 0.4)}
+        </div>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
+          <div style={{ height: 26, borderRadius: 6, background: "rgba(255,255,255,0.8)" }} />
+          <div style={{ display: "flex", gap: 6 }}>
+            <div style={{ flex: 1, height: 30, borderRadius: 6, background: "rgba(255,255,255,0.5)" }} />
+            <div style={{ flex: 1, height: 30, borderRadius: 6, background: "rgba(255,255,255,0.65)" }} />
+          </div>
+          {bar("70%", 0.4)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function UIUXProjectCard({ item, dark, card, border, text, muted }) {
+  const [hov, setHov] = useState(false);
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
+  const onMove = (e) => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    setTilt({ rx: -py * 8, ry: px * 8 });
+  };
+  const reset = () => { setHov(false); setTilt({ rx: 0, ry: 0 }); };
+  return (
+    <div onMouseEnter={() => setHov(true)} onMouseLeave={reset} onMouseMove={onMove}
+      style={{
+        background: card, border: `1px solid ${hov ? item.color : border}`,
+        borderRadius: 20, overflow: "hidden",
+        transition: hov ? "border-color 0.3s, box-shadow 0.3s" : "transform 0.5s cubic-bezier(.34,1.4,.64,1), border-color 0.3s, box-shadow 0.3s",
+        transform: `perspective(700px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) translateY(${hov ? -6 : 0}px)`,
+        boxShadow: hov ? `0 16px 40px ${item.color}44` : "none",
+      }}>
+      <div style={{ height: 200, position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", background: `radial-gradient(circle at 40% 35%, ${item.color}cc, ${item.color}55)` }}>
+        <UIUXMock kind={item.kind} color={item.color} />
+        <span style={{ position: "absolute", top: 14, left: 14, background: `${item.color}dd`, color: "#fff", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 10 }}>
+          {item.tags[0]}
+        </span>
+      </div>
+      <div style={{ padding: "18px 20px 20px" }}>
+        <h3 style={{ fontWeight: 700, fontSize: 15, marginBottom: 6, color: text }}>{item.title}</h3>
+        <p style={{ fontSize: 13, color: muted, lineHeight: 1.6, marginBottom: 12 }}>{item.desc}</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+          {item.tags.map(t => (
+            <span key={t} style={{ fontSize: 11, background: dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)", color: muted, padding: "3px 10px", borderRadius: 8 }}>{t}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function PortfolioCard({ item, dark, card, border, text, muted, onOpen }) {
   const [hov, setHov] = useState(false);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
@@ -860,7 +957,7 @@ function ServicesPage({ dark, card, border, text, muted, bg }) {
     <div style={{ padding: "120px 5% 80px" }}>
       <Reveal>
         <div style={{ maxWidth: 1100, margin: "0 auto 56px" }}>
-          <div style={{ fontSize: 12, letterSpacing: 3, color: C.teal, fontWeight: 600, marginBottom: 10 }}>WHAT I OFFER</div>
+          <div style={{ fontSize: 12, letterSpacing: 3, color: dark ? C.teal : C.tealDeep, fontWeight: 600, marginBottom: 10 }}>WHAT I OFFER</div>
           <h1 style={{ fontSize: "clamp(32px,5vw,60px)", fontWeight: 900 }}>Services</h1>
         </div>
       </Reveal>
@@ -1006,14 +1103,14 @@ function ReviewsPage({ dark, card, border, text, muted, bg }) {
     <div style={{ padding: "120px 5% 80px" }}>
       <Reveal>
         <div style={{ maxWidth: 1100, margin: "0 auto 48px" }}>
-          <div style={{ fontSize: 12, letterSpacing: 3, color: C.teal, fontWeight: 600, marginBottom: 10 }}>CLIENT FEEDBACK</div>
+          <div style={{ fontSize: 12, letterSpacing: 3, color: dark ? C.teal : C.tealDeep, fontWeight: 600, marginBottom: 10 }}>CLIENT FEEDBACK</div>
           <h1 style={{ fontSize: "clamp(32px,5vw,60px)", fontWeight: 900, marginBottom: 40 }}>What Clients Say</h1>
 
           {/* Stats */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: 20, marginBottom: 36 }}>
             {[
               { label: "Average Rating", val: `${avg} ★`, color: "#F7C948" },
-              { label: "Total Reviews", val: reviews.length, color: C.teal },
+              { label: "Total Reviews", val: reviews.length, color: dark ? C.teal : C.tealDeep },
               { label: "5-Star Reviews", val: fivestar, color: C.purple },
             ].map(s => (
               <div key={s.label} style={{ background: card, border: `1px solid ${border}`, borderRadius: 16, padding: "18px 28px", minWidth: 160, textAlign: "center" }}>
@@ -1158,7 +1255,65 @@ function ContactPage({ dark, card, border, text, muted, bg }) {
           </Reveal>
         ))}
       </div>
+
+      <Reveal delay={0.15}>
+        <ContactForm dark={dark} card={card} border={border} text={text} muted={muted} />
+      </Reveal>
     </div>
+  );
+}
+
+function ContactForm({ dark, card, border, text, muted }) {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [sent, setSent] = useState(false);
+  const valid = form.name.trim() && form.email.trim() && form.message.trim();
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (!valid) return;
+    const subject = encodeURIComponent(`New project inquiry from ${form.name}`);
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
+    window.location.href = `mailto:sameed.dawar@gmail.com?subject=${subject}&body=${body}`;
+    setSent(true);
+  };
+
+  const field = {
+    width: "100%", padding: "12px 14px", borderRadius: 10, border: `1px solid ${border}`,
+    background: dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)", color: text,
+    fontFamily: "'Poppins',sans-serif", fontSize: 14, outline: "none",
+  };
+  const lab = { fontSize: 13, color: muted, display: "block", marginBottom: 6, textAlign: "left" };
+
+  return (
+    <form onSubmit={submit} style={{
+      background: card, border: `1px solid ${border}`, borderRadius: 24,
+      padding: "32px", maxWidth: 560, margin: "0 auto 80px", textAlign: "left",
+    }}>
+      <h3 style={{ fontWeight: 700, marginBottom: 20, fontSize: 18, color: text, textAlign: "center" }}>Send a message</h3>
+      <div style={{ marginBottom: 16 }}>
+        <label style={lab}>Your Name</label>
+        <input value={form.name} onChange={e => setForm(x => ({ ...x, name: e.target.value }))} placeholder="Jane Doe" style={field} />
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <label style={lab}>Your Email</label>
+        <input type="email" value={form.email} onChange={e => setForm(x => ({ ...x, email: e.target.value }))} placeholder="jane@company.com" style={field} />
+      </div>
+      <div style={{ marginBottom: 20 }}>
+        <label style={lab}>Message</label>
+        <textarea value={form.message} onChange={e => setForm(x => ({ ...x, message: e.target.value }))} placeholder="Tell me about your project..." rows={4} style={{ ...field, resize: "vertical" }} />
+      </div>
+      <button type="submit" disabled={!valid} style={{
+        width: "100%", background: valid ? `linear-gradient(135deg, ${C.purple}, ${C.teal})` : "rgba(124,106,250,0.3)",
+        border: "none", borderRadius: 12, color: "#fff", padding: "13px 24px",
+        fontFamily: "'Poppins',sans-serif", fontWeight: 600, fontSize: 15,
+        cursor: valid ? "pointer" : "not-allowed",
+      }}>Send Message</button>
+      {sent && (
+        <p style={{ marginTop: 14, fontSize: 13, color: C.teal, textAlign: "center" }}>
+          Your email app should have opened with the message ready to send. If not, email me directly at sameed.dawar@gmail.com.
+        </p>
+      )}
+    </form>
   );
 }
 
@@ -1213,10 +1368,10 @@ function Footer({ dark, card, border, text, muted }) {
 }
 
 // ── Section label helper ───────────────────────────────────────────────────────
-function SectionLabel({ label }) {
+function SectionLabel({ label, dark = true }) {
   return (
     <div style={{ maxWidth: 1100, margin: "0 auto 12px" }}>
-      <span style={{ fontSize: 11, letterSpacing: 3, color: C.teal, fontWeight: 700 }}>{label.toUpperCase()}</span>
+      <span style={{ fontSize: 11, letterSpacing: 3, color: dark ? C.teal : C.tealDeep, fontWeight: 700 }}>{label.toUpperCase()}</span>
     </div>
   );
 }

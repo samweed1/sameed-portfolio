@@ -1,15 +1,16 @@
 import { useRef, useEffect } from "react";
 
 /**
- * ParticleField — a lightweight animated particle/constellation background.
+ * ParticleField — animated orbiting "black-hole" particle background.
  * Pure 2D canvas (no Three.js) so it stays fast and battery-friendly on mobile.
- * Particles drift, connect with nearby neighbours, and parallax toward the cursor,
- * giving a subtle sense of depth. Fully disabled for prefers-reduced-motion users.
+ * Particles orbit a central point on elliptical paths (accretion-disk feel),
+ * twinkle with depth, and the whole disk drifts/parallaxes toward the cursor.
+ * Fully static (single frame) for prefers-reduced-motion users.
  */
 export default function ParticleField({
   color = "124,106,250",
   accent = "76,201,168",
-  density = 0.00009,
+  density = 0.00016,
   className,
   style,
 }) {
@@ -21,88 +22,87 @@ export default function ParticleField({
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2), t = 0;
     let particles = [];
-    const mouse = { x: -9999, y: -9999 };
+    let cx = 0, cy = 0;                 // orbital center
+    const mouse = { x: 0, y: 0, active: false };
 
-    const resize = () => {
+    const build = () => {
       const rect = canvas.getBoundingClientRect();
       w = rect.width; h = rect.height;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.min(120, Math.max(30, Math.floor(w * h * density)));
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        z: Math.random() * 0.7 + 0.3,      // depth 0.3–1
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-      }));
+      // center sits right-of-middle, where the hero art space is
+      cx = w * 0.66; cy = h * 0.52;
+      const count = Math.min(260, Math.max(80, Math.floor(w * h * density)));
+      const maxR = Math.min(w, h) * 0.6;
+      particles = Array.from({ length: count }, () => {
+        const radius = Math.pow(Math.random(), 0.7) * maxR + 20;
+        return {
+          radius,
+          angle: Math.random() * Math.PI * 2,
+          speed: (0.08 + (maxR - radius) / maxR * 0.22) / radius * 14, // inner = faster
+          z: Math.random() * 0.7 + 0.3,
+          tilt: 0.42,                     // vertical squish → disk seen at an angle
+          tw: Math.random() * Math.PI * 2,
+        };
+      });
     };
 
     const draw = () => {
+      t += 1;
       ctx.clearRect(0, 0, w, h);
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx * p.z;
-        p.y += p.vy * p.z;
-        if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
-        if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
 
-        // parallax pull toward cursor (deeper particles move less)
-        const dx = mouse.x - p.x, dy = mouse.y - p.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist < 140) {
-          const f = (1 - dist / 140) * 0.6 * p.z;
-          p.x += (dx / dist) * f;
-          p.y += (dy / dist) * f;
-        }
+      // drift center gently toward cursor for parallax
+      let dcx = cx, dcy = cy;
+      if (mouse.active) { dcx += (mouse.x - cx) * 0.04; dcy += (mouse.y - cy) * 0.04; }
 
-        const r = p.z * 2.2;
+      // glowing core
+      const coreR = Math.min(w, h) * 0.12;
+      const g = ctx.createRadialGradient(dcx, dcy, 0, dcx, dcy, coreR);
+      g.addColorStop(0, `rgba(${color},0.28)`);
+      g.addColorStop(0.5, `rgba(${accent},0.10)`);
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(dcx, dcy, coreR, 0, Math.PI * 2);
+      ctx.fill();
+
+      for (const p of particles) {
+        if (!reduce) { p.angle += p.speed * 0.01; p.tw += 0.03; }
+        const x = dcx + Math.cos(p.angle) * p.radius;
+        const y = dcy + Math.sin(p.angle) * p.radius * p.tilt;
+        const twinkle = 0.6 + Math.sin(p.tw) * 0.4;
+        const r = p.z * 1.9 * twinkle;
+        // particles nearer the front (lower half) brighter
+        const depth = 0.25 + (Math.sin(p.angle) + 1) / 2 * 0.75;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${color},${0.15 + p.z * 0.5})`;
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${color},${(0.12 + p.z * 0.5) * depth * twinkle})`;
         ctx.fill();
-
-        // link nearby particles
-        for (let j = i + 1; j < particles.length; j++) {
-          const q = particles[j];
-          const d = Math.hypot(p.x - q.x, p.y - q.y);
-          if (d < 110) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = `rgba(${accent},${(1 - d / 110) * 0.18})`;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
-          }
-        }
       }
       rafRef.current = requestAnimationFrame(draw);
     };
 
-    resize();
-    if (reduce) {
-      draw();                       // render one static frame, no animation loop
-      cancelAnimationFrame(rafRef.current);
-    } else {
-      draw();
-    }
+    build();
+    draw();
+    if (reduce) cancelAnimationFrame(rafRef.current);
 
     const onMove = (e) => {
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
+      mouse.active = true;
     };
-    const onLeave = () => { mouse.x = -9999; mouse.y = -9999; };
-    window.addEventListener("resize", resize);
+    const onLeave = () => { mouse.active = false; };
+    window.addEventListener("resize", build);
     if (!reduce) {
       window.addEventListener("pointermove", onMove);
       window.addEventListener("pointerleave", onLeave);
     }
     return () => {
       cancelAnimationFrame(rafRef.current);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", build);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerleave", onLeave);
     };
