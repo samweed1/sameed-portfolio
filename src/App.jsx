@@ -38,6 +38,21 @@ function useReveal() {
   return [ref, visible];
 }
 
+// ── Hook: media query ──────────────────────────────────────────────────────────
+function useMediaQuery(query) {
+  const [match, setMatch] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(query).matches
+  );
+  useEffect(() => {
+    const m = window.matchMedia(query);
+    const on = () => setMatch(m.matches);
+    on();
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, [query]);
+  return match;
+}
+
 // ── Reveal wrapper ─────────────────────────────────────────────────────────────
 function Reveal({ children, delay = 0, style = {} }) {
   const [ref, visible] = useReveal();
@@ -77,6 +92,7 @@ export default function App() {
   const [scrollPct, setScrollPct] = useState(0);
   const [navScrolled, setNavScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     const onScroll = () => {
@@ -140,32 +156,76 @@ export default function App() {
           <LogoSVG height={32} dark={dark} />
         </button>
 
-        {/* Desktop links */}
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+        {/* Dark toggle (shared) */}
+        {!isMobile && (
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            {navLinks.map(n => (
+              <button key={n} onClick={() => { setPage(n.toLowerCase()); setMobileOpen(false); }}
+                style={{
+                  background: "none", border: "none", cursor: "pointer",
+                  color: page === n.toLowerCase() ? C.purple : text,
+                  fontFamily: "'Poppins', sans-serif", fontWeight: 500, fontSize: 14,
+                  padding: "6px 14px", borderRadius: 8,
+                  borderBottom: page === n.toLowerCase() ? `2px solid ${C.purple}` : "2px solid transparent",
+                  transition: "color 0.2s, border-color 0.2s",
+                }}>
+                {n}
+              </button>
+            ))}
+            <button onClick={() => setDark(d => !d)} aria-label="Toggle dark mode" style={{
+              background: dark ? "rgba(124,106,250,0.15)" : "rgba(124,106,250,0.1)",
+              border: `1px solid ${border}`, borderRadius: 20, cursor: "pointer",
+              padding: "6px 14px", color: text, fontSize: 14, fontFamily: "'Poppins', sans-serif",
+              transition: "all 0.2s", marginLeft: 8,
+            }}>
+              {dark ? "☀️ Light" : "🌙 Dark"}
+            </button>
+          </div>
+        )}
+
+        {/* Mobile controls */}
+        {isMobile && (
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <button onClick={() => setDark(d => !d)} aria-label="Toggle dark mode" style={{
+              background: dark ? "rgba(124,106,250,0.15)" : "rgba(124,106,250,0.1)",
+              border: `1px solid ${border}`, borderRadius: 20, cursor: "pointer",
+              padding: "6px 12px", color: text, fontSize: 15, fontFamily: "'Poppins', sans-serif",
+            }}>{dark ? "☀️" : "🌙"}</button>
+            <button onClick={() => setMobileOpen(o => !o)} aria-label="Toggle navigation menu"
+              aria-expanded={mobileOpen} style={{
+              background: "none", border: `1px solid ${border}`, borderRadius: 10, cursor: "pointer",
+              width: 40, height: 40, color: text, fontSize: 18, display: "flex",
+              alignItems: "center", justifyContent: "center",
+            }}>{mobileOpen ? "✕" : "☰"}</button>
+          </div>
+        )}
+      </nav>
+
+      {/* Mobile dropdown menu */}
+      {isMobile && (
+        <div style={{
+          position: "fixed", top: 67, left: 0, right: 0, zIndex: 998,
+          background: dark ? "rgba(13,13,26,0.97)" : "rgba(245,245,255,0.97)",
+          backdropFilter: "blur(18px)", borderBottom: `1px solid ${border}`,
+          display: "flex", flexDirection: "column", padding: "8px 5%",
+          transform: mobileOpen ? "translateY(0)" : "translateY(-120%)",
+          opacity: mobileOpen ? 1 : 0,
+          pointerEvents: mobileOpen ? "auto" : "none",
+          transition: "transform 0.32s cubic-bezier(.34,1.2,.64,1), opacity 0.32s",
+        }}>
           {navLinks.map(n => (
-            <button key={n} onClick={() => { setPage(n.toLowerCase()); setMobileOpen(false); }}
+            <button key={n} onClick={() => { setPage(n.toLowerCase()); setMobileOpen(false); window.scrollTo(0, 0); }}
               style={{
-                background: "none", border: "none", cursor: "pointer",
+                background: "none", border: "none", cursor: "pointer", textAlign: "left",
                 color: page === n.toLowerCase() ? C.purple : text,
-                fontFamily: "'Poppins', sans-serif", fontWeight: 500, fontSize: 14,
-                padding: "6px 14px", borderRadius: 8,
-                borderBottom: page === n.toLowerCase() ? `2px solid ${C.purple}` : "2px solid transparent",
-                transition: "color 0.2s, border-color 0.2s",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: 16,
+                padding: "14px 8px", borderBottom: `1px solid ${border}`,
               }}>
               {n}
             </button>
           ))}
-          {/* Dark toggle */}
-          <button onClick={() => setDark(d => !d)} aria-label="Toggle dark mode" style={{
-            background: dark ? "rgba(124,106,250,0.15)" : "rgba(124,106,250,0.1)",
-            border: `1px solid ${border}`, borderRadius: 20, cursor: "pointer",
-            padding: "6px 14px", color: text, fontSize: 14, fontFamily: "'Poppins', sans-serif",
-            transition: "all 0.2s", marginLeft: 8,
-          }}>
-            {dark ? "☀️ Light" : "🌙 Dark"}
-          </button>
         </div>
-      </nav>
+      )}
 
       {/* Page router */}
       {page === "home" && <HomePage dark={dark} card={card} border={border} text={text} muted={muted} bg={bg} setPage={setPage} />}
@@ -334,12 +394,13 @@ function DraggableTag({ label, dark }) {
 
 // ── About ──────────────────────────────────────────────────────────────────────
 function AboutSection({ dark, card, border, text, muted, bg }) {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const skills = ["UI/UX Design", "Creative Direction", "Social Media Visuals", "Visual Design", "Brand Identity", "Figma", "Adobe XD", "Illustrator", "Photoshop"];
 
   return (
     <section style={{ padding: "100px 5%", background: dark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)" }}>
       <SectionLabel label="About Me" />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 60, alignItems: "center", maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.4fr", gap: isMobile ? 36 : 60, alignItems: "center", maxWidth: 1100, margin: "0 auto" }}>
 
         {/* Photo card */}
         <Reveal>
@@ -838,10 +899,11 @@ function ServicesPage({ dark, card, border, text, muted, bg }) {
 
 function UIUXHero({ dark, card, border, text, muted }) {
   const [hov, setHov] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} style={{
       background: card, border: `1px solid ${hov ? C.purple : border}`,
-      borderRadius: 24, overflow: "hidden", display: "grid", gridTemplateColumns: "1fr 1fr",
+      borderRadius: 24, overflow: "hidden", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
       transition: "all 0.3s", boxShadow: hov ? `0 16px 48px ${C.purple}33` : "none",
     }}>
       {/* Visual */}
