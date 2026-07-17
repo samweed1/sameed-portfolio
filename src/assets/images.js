@@ -1,0 +1,45 @@
+// Portfolio image assets — imported so Vite fingerprints, compresses,
+// and lazy-serves them instead of inlining ~2MB of base64 into the JS bundle.
+
+import IMG_FULLER_PATENT_url from "./portfolio/fuller_patent.png";
+import IMG_CORPORATE_BRILLIANCE_url from "./portfolio/corporate_brilliance.png";
+import IMG_WISION_WORK_url from "./portfolio/wision_work.png";
+import IMG_BALTIC_BREEZE_url from "./portfolio/baltic_breeze.png";
+import IMG_VIRTUS_LABS_url from "./portfolio/virtus_labs.png";
+import IMG_RBN_url from "./portfolio/rbn.png";
+import IMG_KINGDOM_JOINT_LOGO_url from "./portfolio/kingdom_joint_logo.png";
+import IMG_BRANDY_VIBES_url from "./portfolio/brandy_vibes.png";
+import IMG_COFFEE_BREAK_url from "./portfolio/coffee_break.png";
+import IMG_REAWAKEN_url from "./portfolio/reawaken.png";
+import IMG_EDIFY_url from "./portfolio/edify.png";
+import IMG_REC_FILMS_url from "./portfolio/rec_films.png";
+import IMG_CZ_CONNECT_url from "./portfolio/cz_connect.png";
+import IMG_ABS_LOGO_url from "./portfolio/abs_logo.png";
+import IMG_BRANDED_STORE_LOGO_url from "./portfolio/branded_store_logo.png";
+import IMG_EMENAC_LOGO_url from "./portfolio/emenac_logo.png";
+import IMG_MESHWAR_LOGO_url from "./portfolio/meshwar_logo.png";
+import IMG_KINGDOM_JOINT_SOCIAL_LOGO_url from "./portfolio/kingdom_joint_social_logo.png";
+import IMG_DESIGNTHRU_LOGO_url from "./portfolio/designthru_logo.png";
+import IMG_ABS_POST1_url from "./portfolio/abs_post1.png";
+import IMG_ABS_POST2_url from "./portfolio/abs_post2.png";
+import IMG_ABS_POST3_url from "./portfolio/abs_post3.png";
+import IMG_ABS_POST4_url from "./portfolio/abs_post4.png";
+import IMG_ABS_POST5_url from "./portfolio/abs_post5.png";
+import IMG_BRANDED_POST1_url from "./portfolio/branded_post1.png";
+import IMG_BRANDED_POST2_url from "./portfolio/branded_post2.png";
+import IMG_BRANDED_POST3_url from "./portfolio/branded_post3.png";
+import IMG_EMENAC_POST1_url from "./portfolio/emenac_post1.png";
+import IMG_EMENAC_POST2_url from "./portfolio/emenac_post2.png";
+import IMG_MESHWAR_POST1_url from "./portfolio/meshwar_post1.png";
+import IMG_KJ_POST1_url from "./portfolio/kj_post1.png";
+import IMG_KJ_POST2_url from "./portfolio/kj_post2.png";
+import IMG_DT_POST1_url from "./portfolio/dt_post1.png";
+import IMG_DT_POST2_url from "./portfolio/dt_post2.png";
+import IMG_DT_POST3_url from "./portfolio/dt_post3.png";
+import IMG_DT_POST4_url from "./portfolio/dt_post4.png";
+import IMG_DT_POST5_url from "./portfolio/dt_post5.png";
+import IMG_DT_POST6_url from "./portfolio/dt_post6.png";
+import IMG_DT_POST7_url from "./portfolio/dt_post7.png";
+import PHOTO_SRC_url from "./portfolio/profile-photo.png";
+
+export const IMG_FULLER_PATENT = IMG_FULLER_PATENT_url, IMG_CORPORATE_BRILLIANCE = IMG_CORPORATE_BRILLIANCE_url, IMG_WISION_WORK = IMG_WISION_WORK_url, IMG_BALTIC_BREEZE = IMG_BALTIC_BREEZE_url, IMG_VIRTUS_LABS = IMG_VIRTUS_LABS_url, IMG_RBN = IMG_RBN_url, IMG_KINGDOM_JOINT_LOGO = IMG_KINGDOM_JOINT_LOGO_url, IMG_BRANDY_VIBES = IMG_BRANDY_VIBES_url, IMG_COFFEE_BREAK = IMG_COFFEE_BREAK_url, IMG_REAWAKEN = IMG_REAWAKEN_url, IMG_EDIFY = IMG_EDIFY_url, IMG_REC_FILMS = IMG_REC_FILMS_url, IMG_CZ_CONNECT = IMG_CZ_CONNECT_url, IMG_ABS_LOGO = IMG_ABS_LOGO_url, IMG_BRANDED_STORE_LOGO = IMG_BRANDED_STORE_LOGO_url, IMG_EMENAC_LOGO = IMG_EMENAC_LOGO_url, IMG_MESHWAR_LOGO = IMG_MESHWAR_LOGO_url, IMG_KINGDOM_JOINT_SOCIAL_LOGO = IMG_KINGDOM_JOINT_SOCIAL_LOGO_url, IMG_DESIGNTHRU_LOGO = IMG_DESIGNTHRU_LOGO_url, IMG_ABS_POST1 = IMG_ABS_POST1_url, IMG_ABS_POST2 = IMG_ABS_POST2_url, IMG_ABS_POST3 = IMG_ABS_POST3_url, IMG_ABS_POST4 = IMG_ABS_POST4_url, IMG_ABS_POST5 = IMG_ABS_POST5_url, IMG_BRANDED_POST1 = IMG_BRANDED_POST1_url, IMG_BRANDED_POST2 = IMG_BRANDED_POST2_url, IMG_BRANDED_POST3 = IMG_BRANDED_POST3_url, IMG_EMENAC_POST1 = IMG_EMENAC_POST1_url, IMG_EMENAC_POST2 = IMG_EMENAC_POST2_url, IMG_MESHWAR_POST1 = IMG_MESHWAR_POST1_url, IMG_KJ_POST1 = IMG_KJ_POST1_url, IMG_KJ_POST2 = IMG_KJ_POST2_url, IMG_DT_POST1 = IMG_DT_POST1_url, IMG_DT_POST2 = IMG_DT_POST2_url, IMG_DT_POST3 = IMG_DT_POST3_url, IMG_DT_POST4 = IMG_DT_POST4_url, IMG_DT_POST5 = IMG_DT_POST5_url, IMG_DT_POST6 = IMG_DT_POST6_url, IMG_DT_POST7 = IMG_DT_POST7_url, PHOTO_SRC = PHOTO_SRC_url;
