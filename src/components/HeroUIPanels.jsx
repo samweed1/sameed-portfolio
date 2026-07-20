@@ -167,12 +167,12 @@ function XdPanel() {
 }
 
 const ITEMS = [
-  { el: <LayersPanel />, pos: { top: "5%", right: "31%" }, dur: 9, delay: 0 },
-  { el: <PhotoshopPanel />, pos: { top: "8%", right: "2%" }, dur: 10, delay: 0.6 },
-  { el: <IllustratorPanel />, pos: { top: "40%", right: "40%" }, dur: 8.5, delay: 1.1 },
-  { el: <AutoLayoutPanel />, pos: { top: "45%", right: "5%" }, dur: 9.5, delay: 0.3 },
-  { el: <XdPanel />, pos: { top: "72%", right: "27%" }, dur: 8, delay: 1.4 },
-  { el: <Toolbar />, pos: { top: "70%", right: "3%" }, dur: 7.5, delay: 0.9 },
+  { el: <LayersPanel />, pos: { top: "15%", right: "31%" }, dur: 9, delay: 0 },
+  { el: <PhotoshopPanel />, pos: { top: "16%", right: "2%" }, dur: 10, delay: 0.6 },
+  { el: <IllustratorPanel />, pos: { top: "45%", right: "40%" }, dur: 8.5, delay: 1.1 },
+  { el: <AutoLayoutPanel />, pos: { top: "47%", right: "4%" }, dur: 9.5, delay: 0.3 },
+  { el: <XdPanel />, pos: { top: "70%", right: "26%" }, dur: 8, delay: 1.4 },
+  { el: <Toolbar />, pos: { top: "72%", right: "4%" }, dur: 7.5, delay: 0.9 },
 ];
 
 export default function HeroUIPanels() {
