@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import ParticleField from "./components/ParticleField";
-import HeroTools from "./components/HeroTools";
+import HeroUIPanels from "./components/HeroUIPanels";
 import { IMG_FULLER_PATENT, IMG_CORPORATE_BRILLIANCE, IMG_WISION_WORK, IMG_BALTIC_BREEZE, IMG_VIRTUS_LABS, IMG_RBN, IMG_KINGDOM_JOINT_LOGO, IMG_BRANDY_VIBES, IMG_COFFEE_BREAK, IMG_REAWAKEN, IMG_EDIFY, IMG_REC_FILMS, IMG_CZ_CONNECT, IMG_ABS_LOGO, IMG_BRANDED_STORE_LOGO, IMG_EMENAC_LOGO, IMG_MESHWAR_LOGO, IMG_KINGDOM_JOINT_SOCIAL_LOGO, IMG_DESIGNTHRU_LOGO, IMG_ABS_POST1, IMG_ABS_POST2, IMG_ABS_POST3, IMG_ABS_POST4, IMG_ABS_POST5, IMG_BRANDED_POST1, IMG_BRANDED_POST2, IMG_BRANDED_POST3, IMG_EMENAC_POST1, IMG_EMENAC_POST2, IMG_MESHWAR_POST1, IMG_KJ_POST1, IMG_KJ_POST2, IMG_DT_POST1, IMG_DT_POST2, IMG_DT_POST3, IMG_DT_POST4, IMG_DT_POST5, IMG_DT_POST6, IMG_DT_POST7, PHOTO_SRC } from "./assets/images";
 
 // ── Logo SVG ─────────────────────────────────────────────────────────────────
@@ -274,8 +274,8 @@ function HeroSection({ dark, text, muted, bg, setPage }) {
 
   return (
     <section style={{ minHeight: "100vh", position: "relative", display: "flex", alignItems: "center", padding: "120px 5% 80px", overflow: "hidden" }}>
-      {/* Floating software tool icons */}
-      <HeroTools dark={dark} />
+      {/* Floating software-UI panels */}
+      <HeroUIPanels />
       {/* Blobs */}
       <div style={{ position: "absolute", top: "10%", right: "8%", width: 420, height: 420, borderRadius: "60% 40% 30% 70% / 50% 60% 40% 50%", background: "radial-gradient(circle, rgba(124,106,250,0.18) 0%, transparent 70%)", filter: "blur(40px)", animation: "blobFloat 8s ease-in-out infinite" }} />
       <div style={{ position: "absolute", bottom: "15%", right: "25%", width: 280, height: 280, borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", background: "radial-gradient(circle, rgba(76,201,168,0.15) 0%, transparent 70%)", filter: "blur(30px)", animation: "blobFloat 10s ease-in-out infinite reverse" }} />
