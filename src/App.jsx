@@ -655,7 +655,7 @@ function PortfolioPage({ dark, card, border, text, muted, bg }) {
 
   const openLightbox = (item) => {
     if (item.type === "logo") {
-      setLightbox({ images: [item.img], index: 0, title: item.title, desc: item.desc });
+      setLightbox({ images: [item.img], index: 0, title: item.title, desc: item.desc, light: true });
     } else {
       setLightbox({ images: item.posts, index: 0, title: item.title, desc: item.desc });
     }
@@ -729,7 +729,7 @@ function PortfolioPage({ dark, card, border, text, muted, bg }) {
 }
 
 function Lightbox({ lightbox, setLightbox, dark }) {
-  const { images, index, title, desc } = lightbox;
+  const { images, index, title, desc, light } = lightbox;
   const [current, setCurrent] = useState(index);
 
   useEffect(() => {
@@ -763,7 +763,7 @@ function Lightbox({ lightbox, setLightbox, dark }) {
         </div>
 
         {/* Image */}
-        <div style={{ flex: 1, overflow: "hidden", position: "relative", background: "#000", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 300 }}>
+        <div style={{ flex: 1, overflow: "hidden", position: "relative", background: light ? "#ffffff" : "#000", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 300, padding: light ? 32 : 0 }}>
           <img src={images[current]} alt={title} style={{ maxWidth: "100%", maxHeight: "60vh", objectFit: "contain" }} />
           {images.length > 1 && (
             <>
@@ -910,11 +910,12 @@ function PortfolioCard({ item, dark, card, border, text, muted, onOpen }) {
       {/* Image preview */}
       <div style={{
         height: 200, position: "relative", overflow: "hidden",
-        background: `radial-gradient(circle at 40% 40%, ${item.color}33, ${item.color}11)`,
+        background: item.type === "logo" ? "#ffffff" : `radial-gradient(circle at 40% 40%, ${item.color}33, ${item.color}11)`,
+        padding: item.type === "logo" ? 22 : 0,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         {previewImg
-          ? <img src={previewImg} alt={item.title} loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s", transform: hov ? "scale(1.05)" : "scale(1)" }} />
+          ? <img src={previewImg} alt={item.title} loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: item.type === "logo" ? "contain" : "cover", transition: "transform 0.4s", transform: hov ? "scale(1.05)" : "scale(1)" }} />
           : <span style={{ fontSize: 56 }}>{item.emoji || "🎨"}</span>
         }
         {/* Hover overlay */}
