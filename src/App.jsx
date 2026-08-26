@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import ParticleField from "./components/ParticleField";
 import HeroUIPanels from "./components/HeroUIPanels";
-import { IMG_FULLER_PATENT, IMG_CORPORATE_BRILLIANCE, IMG_WISION_WORK, IMG_BALTIC_BREEZE, IMG_VIRTUS_LABS, IMG_RBN, IMG_KINGDOM_JOINT_LOGO, IMG_BRANDY_VIBES, IMG_COFFEE_BREAK, IMG_REAWAKEN, IMG_EDIFY, IMG_REC_FILMS, IMG_CZ_CONNECT, IMG_ABS_LOGO, IMG_BRANDED_STORE_LOGO, IMG_EMENAC_LOGO, IMG_MESHWAR_LOGO, IMG_KINGDOM_JOINT_SOCIAL_LOGO, IMG_DESIGNTHRU_LOGO, IMG_ABS_POST1, IMG_ABS_POST2, IMG_ABS_POST3, IMG_ABS_POST4, IMG_ABS_POST5, IMG_BRANDED_POST1, IMG_BRANDED_POST2, IMG_BRANDED_POST3, IMG_EMENAC_POST1, IMG_EMENAC_POST2, IMG_MESHWAR_POST1, IMG_KJ_POST1, IMG_KJ_POST2, IMG_DT_POST1, IMG_DT_POST2, IMG_DT_POST3, IMG_DT_POST4, IMG_DT_POST5, IMG_DT_POST6, IMG_DT_POST7, PHOTO_SRC } from "./assets/images";
+import { IMG_FULLER_PATENT, IMG_CORPORATE_BRILLIANCE, IMG_WISION_WORK, IMG_BALTIC_BREEZE, IMG_VIRTUS_LABS, IMG_RBN, IMG_KINGDOM_JOINT_LOGO, IMG_BRANDY_VIBES, IMG_COFFEE_BREAK, IMG_REAWAKEN, IMG_EDIFY, IMG_REC_FILMS, IMG_CZ_CONNECT, IMG_ABS_LOGO, IMG_BRANDED_STORE_LOGO, IMG_EMENAC_LOGO, IMG_MESHWAR_LOGO, IMG_KINGDOM_JOINT_SOCIAL_LOGO, IMG_DESIGNTHRU_LOGO, IMG_ABS_POST1, IMG_ABS_POST2, IMG_ABS_POST3, IMG_ABS_POST4, IMG_ABS_POST5, IMG_BRANDED_POST1, IMG_BRANDED_POST2, IMG_BRANDED_POST3, IMG_EMENAC_POST1, IMG_EMENAC_POST2, IMG_MESHWAR_POST1, IMG_KJ_POST1, IMG_KJ_POST2, IMG_DT_POST1, IMG_DT_POST2, IMG_DT_POST3, IMG_DT_POST4, IMG_DT_POST5, IMG_DT_POST6, IMG_DT_POST7, IMG_SKEWINGS_FULL, IMG_SKEWINGS_S1, IMG_SKEWINGS_S2, IMG_SKEWINGS_S3, IMG_SKEWINGS_S4, IMG_SKEWINGS_S5, IMG_SKEWINGS_S6, IMG_PURE_DIGITAL_FULL, IMG_PURE_DIGITAL_S1, IMG_PURE_DIGITAL_S2, IMG_PURE_DIGITAL_S3, IMG_PURE_DIGITAL_S4, IMG_SIMPLIA_FULL, IMG_SIMPLIA_S1, IMG_SIMPLIA_S2, IMG_SIMPLIA_S3, IMG_SIMPLIA_S4, IMG_SIMPLIA_S5, IMG_SIMPLIA_S6, IMG_SIMPLIA_S7, PHOTO_SRC } from "./assets/images";
 
 // ── Logo SVG ─────────────────────────────────────────────────────────────────
 const LogoSVG = ({ height = 36, dark = true }) => {
@@ -629,10 +629,60 @@ function PortfolioPage({ dark, card, border, text, muted, bg }) {
   ];
 
   const uiuxProjects = [
-    { title: "SaaS Analytics Dashboard", desc: "End-to-end product design for a B2B analytics platform — data-dense views made calm and legible through clear hierarchy, a flexible component system, and a considered dark theme.", tags: ["UI/UX", "Dashboard", "Design System"], kind: "web", color: "#7C6AFA" },
-    { title: "Fintech Mobile App", desc: "A consumer finance app covering onboarding, transactions, and budgeting. Designed for one-handed use with accessible contrast, haptic-friendly targets, and a friendly, trustworthy tone.", tags: ["UI/UX", "Mobile", "Prototype"], kind: "mobile", color: "#4CC9A8" },
-    { title: "E-commerce Redesign", desc: "Reworked a cluttered storefront into a focused shopping flow — streamlined product pages, a frictionless cart, and a checkout that lifted completion in usability testing.", tags: ["UI/UX", "Web", "Conversion"], kind: "web", color: "#FF8C42" },
-    { title: "Design System & Tokens", desc: "Built a scalable Figma design system — tokens, components, and documentation — so a growing product team could ship consistent, on-brand interfaces faster.", tags: ["UI/UX", "Design System", "Figma"], kind: "system", color: "#F7C948" },
+    {
+      title: "Pure Digital Marketing",
+      subtitle: "Digital marketing agency for plumbers",
+      url: "puredigitalmarketing.com",
+      color: "#1E3A8A",
+      tags: ["UI/UX", "Web Design", "Lead Gen"],
+      desc: "A full-page website design for a Tampa agency that markets exclusively to plumbers and other home-service trades. The brief was blunt: the old site looked like a generic template and buried the enquiry form. I rebuilt the page around a single conversion goal — the contact form sits inside the hero, visible before any scroll, with trust badges (Google Partner, Expertise, BestSearch) placed immediately below it so credibility lands before the pitch does.",
+      highlights: [
+        "Form-in-hero layout so the primary action never needs a scroll",
+        "Deep-navy and white system built for contrast and quick scanning",
+        "Services shown as a 7-icon grid instead of a wall of paragraphs",
+        "A real before/after lead-volume panel doing the persuading, not adjectives",
+      ],
+      role: "UI Design · Web Design · Visual System",
+      cover: IMG_PURE_DIGITAL_S1,
+      shots: [IMG_PURE_DIGITAL_S1, IMG_PURE_DIGITAL_S2, IMG_PURE_DIGITAL_S3, IMG_PURE_DIGITAL_S4],
+      full: IMG_PURE_DIGITAL_FULL,
+    },
+    {
+      title: "Simplia",
+      subtitle: "Web design service company",
+      url: "simplia.com",
+      color: "#E5322D",
+      tags: ["UI/UX", "Web Design", "Agency"],
+      desc: "A landing page for a web design service that sells speed — 24-hour delivery, unlimited revisions, cancel anytime. The design had to feel confident without shouting, so I used a restrained red-and-cream palette with soft circular shapes carrying the eye down the page, and let one bold accent colour do the work that five colours usually get asked to do.",
+      highlights: [
+        "Layered device mockup in the hero showing real output, not a stock photo",
+        "Four-step process section using oversized numerals as the visual anchor",
+        "Guarantees turned into a scannable icon row — the actual reason people buy",
+        "Full-bleed red bands used as rhythm markers between calm white sections",
+      ],
+      role: "UI Design · Web Design · Brand Application",
+      cover: IMG_SIMPLIA_S1,
+      shots: [IMG_SIMPLIA_S1, IMG_SIMPLIA_S2, IMG_SIMPLIA_S3, IMG_SIMPLIA_S4, IMG_SIMPLIA_S5, IMG_SIMPLIA_S6, IMG_SIMPLIA_S7],
+      full: IMG_SIMPLIA_FULL,
+    },
+    {
+      title: "Skewings",
+      subtitle: "Flight & travel booking platform",
+      url: "skewings.com",
+      color: "#2E86F0",
+      tags: ["UI/UX", "Travel", "Booking"],
+      desc: "A booking site for flights and travel packages, designed to feel like the trip rather than the transaction. Photography carries the page and the interface gets out of its way — rounded cards, generous whitespace, and one blue accent used consistently for anything clickable. The booking path stays visible throughout, from the hero CTA down to the destination cards.",
+      highlights: [
+        "Editorial hero with a stepped progress rail hinting at the booking flow",
+        "Destination cards with location, rating, and a single obvious tap target",
+        "OTA trust row (Tripadvisor, Trivago, Expedia, Booking.com) placed above the fold-break",
+        "Stats and testimonials used as proof blocks between the visual sections",
+      ],
+      role: "UI/UX Design · Web Design · Visual System",
+      cover: IMG_SKEWINGS_S1,
+      shots: [IMG_SKEWINGS_S1, IMG_SKEWINGS_S2, IMG_SKEWINGS_S3, IMG_SKEWINGS_S4, IMG_SKEWINGS_S5, IMG_SKEWINGS_S6],
+      full: IMG_SKEWINGS_FULL,
+    },
   ];
 
   const allItems = [
@@ -650,6 +700,22 @@ function PortfolioPage({ dark, card, border, text, muted, bg }) {
   const filtered = activeTab === "all" ? allItems
     : activeTab === "uiux" ? []
     : allItems.filter(i => i.category === activeTab);
+
+  const openUIUX = (item) => {
+    setLightbox({
+      images: [...item.shots, item.full],
+      index: 0,
+      title: item.title,
+      desc: item.desc,
+      browser: true,
+      url: item.url,
+      subtitle: item.subtitle,
+      role: item.role,
+      highlights: item.highlights,
+      accent: item.color,
+      tallIndex: item.shots.length,
+    });
+  };
 
   const openLightbox = (item) => {
     if (item.type === "logo") {
@@ -697,7 +763,7 @@ function PortfolioPage({ dark, card, border, text, muted, bg }) {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px,1fr))", gap: 24, maxWidth: 1100, margin: "0 auto 60px" }}>
           {uiuxProjects.map((item, i) => (
             <Reveal key={`uiux-${i}`} delay={i * 0.06}>
-              <UIUXProjectCard item={item} dark={dark} card={card} border={border} text={text} muted={muted} />
+              <UIUXProjectCard item={item} dark={dark} card={card} border={border} text={text} muted={muted} onOpen={() => openUIUX(item)} />
             </Reveal>
           ))}
         </div>
@@ -727,7 +793,7 @@ function PortfolioPage({ dark, card, border, text, muted, bg }) {
 }
 
 function Lightbox({ lightbox, setLightbox, dark }) {
-  const { images, index, title, desc, light } = lightbox;
+  const { images, index, title, desc, light, browser, url, accent, tallIndex, subtitle, role, highlights } = lightbox;
   const [current, setCurrent] = useState(index);
 
   useEffect(() => {
@@ -748,101 +814,116 @@ function Lightbox({ lightbox, setLightbox, dark }) {
     }}>
       <div onClick={e => e.stopPropagation()} style={{
         background: dark ? "#13132a" : "#fff", borderRadius: 24, overflow: "hidden",
-        maxWidth: 860, width: "100%", maxHeight: "90vh", display: "flex", flexDirection: "column",
+        maxWidth: browser ? 1000 : 860, width: "100%", maxHeight: "92vh", height: browser ? "92vh" : "auto", display: "flex", flexDirection: "column",
         border: `1px solid rgba(124,106,250,0.3)`,
       }}>
         {/* Header */}
-        <div style={{ padding: "20px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid rgba(124,106,250,0.15)" }}>
+        <div style={{ padding: "20px 24px", flexShrink: 0, display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid rgba(124,106,250,0.15)" }}>
           <div>
             <h3 style={{ fontWeight: 700, fontSize: 18, color: dark ? "#e8e6ff" : "#1a1a2e" }}>{title}</h3>
-            {images.length > 1 && <span style={{ fontSize: 12, color: C.teal }}>{current + 1} / {images.length}</span>}
+            {subtitle && <div style={{ fontSize: 12, color: accent || C.teal, fontWeight: 600, marginTop: 2 }}>{subtitle}</div>}
+            {images.length > 1 && <span style={{ fontSize: 12, color: C.teal }}>{current + 1} / {images.length}{browser && current === tallIndex ? " · full page" : ""}</span>}
           </div>
           <button onClick={() => setLightbox(null)} aria-label="Close gallery" style={{ background: "rgba(124,106,250,0.15)", border: "none", borderRadius: 10, color: C.purple, width: 36, height: 36, cursor: "pointer", fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
         </div>
 
         {/* Image */}
-        <div style={{ flex: 1, overflow: "hidden", position: "relative", background: light ? "#ffffff" : "#000", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 300, padding: light ? 32 : 0 }}>
-          <img src={images[current]} alt={title} style={{ maxWidth: "100%", maxHeight: "60vh", objectFit: "contain" }} />
+        <div style={{
+          flex: "1 1 auto", minHeight: browser ? 200 : 300, overflow: "hidden", position: "relative",
+          background: browser ? (dark ? "#0d0d1c" : "#eceaf6") : light ? "#ffffff" : "#000",
+          display: "flex", alignItems: browser ? "stretch" : "center", justifyContent: "center",
+          padding: browser ? 18 : light ? 32 : 0,
+        }}>
+          {browser ? (
+            <BrowserFrame url={url} accent={accent}>
+              <div style={{ flex: 1, minHeight: 0, overflowY: "auto", overflowX: "hidden", background: "#fff", WebkitOverflowScrolling: "touch" }}>
+                <img src={images[current]} alt={`${title} — screen ${current + 1}`}
+                  style={{ width: "100%", display: "block" }} />
+              </div>
+              {current === tallIndex && (
+                <div aria-hidden="true" style={{
+                  position: "absolute", bottom: 26, left: "50%", transform: "translateX(-50%)",
+                  background: "rgba(0,0,0,0.6)", color: "#fff", fontSize: 11, fontWeight: 600,
+                  padding: "5px 12px", borderRadius: 20, backdropFilter: "blur(4px)", pointerEvents: "none",
+                }}>scroll to explore the full page ↓</div>
+              )}
+            </BrowserFrame>
+          ) : (
+            <img src={images[current]} alt={title} style={{ maxWidth: "100%", maxHeight: "60vh", objectFit: "contain" }} />
+          )}
           {images.length > 1 && (
             <>
               <button onClick={() => setCurrent(c => Math.max(c - 1, 0))} disabled={current === 0}
-                aria-label="Previous image" style={{ position: "absolute", left: 16, background: "rgba(124,106,250,0.7)", border: "none", borderRadius: "50%", width: 44, height: 44, color: "#fff", fontSize: 20, cursor: current === 0 ? "not-allowed" : "pointer", opacity: current === 0 ? 0.3 : 1 }}>‹</button>
+                aria-label="Previous image" style={{ position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)", zIndex: 2, background: "rgba(124,106,250,0.7)", border: "none", borderRadius: "50%", width: 44, height: 44, color: "#fff", fontSize: 20, cursor: current === 0 ? "not-allowed" : "pointer", opacity: current === 0 ? 0.3 : 1 }}>‹</button>
               <button onClick={() => setCurrent(c => Math.min(c + 1, images.length - 1))} disabled={current === images.length - 1}
-                aria-label="Next image" style={{ position: "absolute", right: 16, background: "rgba(124,106,250,0.7)", border: "none", borderRadius: "50%", width: 44, height: 44, color: "#fff", fontSize: 20, cursor: current === images.length - 1 ? "not-allowed" : "pointer", opacity: current === images.length - 1 ? 0.3 : 1 }}>›</button>
+                aria-label="Next image" style={{ position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)", zIndex: 2, background: "rgba(124,106,250,0.7)", border: "none", borderRadius: "50%", width: 44, height: 44, color: "#fff", fontSize: 20, cursor: current === images.length - 1 ? "not-allowed" : "pointer", opacity: current === images.length - 1 ? 0.3 : 1 }}>›</button>
             </>
           )}
         </div>
 
         {/* Thumbnails */}
         {images.length > 1 && (
-          <div style={{ display: "flex", gap: 8, padding: "12px 20px", overflowX: "auto", borderTop: "1px solid rgba(124,106,250,0.1)" }}>
+          <div style={{ display: "flex", gap: 8, padding: "12px 20px", flexShrink: 0, overflowX: "auto", borderTop: "1px solid rgba(124,106,250,0.1)" }}>
             {images.map((img, i) => (
               <img key={i} src={img} alt="" loading="lazy" decoding="async" onClick={() => setCurrent(i)}
-                style={{ width: 56, height: 56, objectFit: "cover", borderRadius: 8, cursor: "pointer", border: i === current ? `2px solid ${C.purple}` : "2px solid transparent", opacity: i === current ? 1 : 0.5, flexShrink: 0 }} />
+                style={{ width: 56, height: 56, objectFit: "cover", objectPosition: "top", borderRadius: 8, cursor: "pointer", border: i === current ? `2px solid ${C.purple}` : "2px solid transparent", opacity: i === current ? 1 : 0.5, flexShrink: 0, background: "#fff" }} />
             ))}
           </div>
         )}
 
         {/* Description */}
-        <div style={{ padding: "16px 24px 20px", borderTop: "1px solid rgba(124,106,250,0.1)" }}>
+        <div style={{ padding: "16px 24px 20px", borderTop: "1px solid rgba(124,106,250,0.1)", overflowY: "auto", flexShrink: 0, maxHeight: browser ? "30vh" : "none" }}>
           <p style={{ color: dark ? "#8b8aaa" : "#5a5a7a", fontSize: 14, lineHeight: 1.7 }}>{desc}</p>
+          {highlights && (
+            <ul style={{ margin: "12px 0 0", padding: 0, listStyle: "none", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: "6px 20px" }}>
+              {highlights.map(h => (
+                <li key={h} style={{ color: dark ? "#8b8aaa" : "#5a5a7a", fontSize: 13, lineHeight: 1.6, paddingLeft: 16, position: "relative" }}>
+                  <span aria-hidden="true" style={{ position: "absolute", left: 0, color: accent || C.teal }}>▸</span>{h}
+                </li>
+              ))}
+            </ul>
+          )}
+          {role && <div style={{ marginTop: 12, fontSize: 12, color: dark ? "#6e6d8c" : "#7a7a96", fontWeight: 600, letterSpacing: 0.3 }}>{role}</div>}
         </div>
       </div>
     </div>
   );
 }
 
-function UIUXMock({ kind, color }) {
-  // Lightweight CSS "mockup" preview — no image asset required.
-  const bar = (w, o = 0.9) => (
-    <div style={{ height: 6, width: w, borderRadius: 3, background: `rgba(255,255,255,${o})` }} />
-  );
-  if (kind === "mobile") {
-    return (
-      <div style={{ width: 92, height: 168, borderRadius: 18, background: "rgba(0,0,0,0.28)", border: "2px solid rgba(255,255,255,0.5)", padding: 10, display: "flex", flexDirection: "column", gap: 8 }}>
-        <div style={{ height: 30, borderRadius: 8, background: "rgba(255,255,255,0.85)" }} />
-        {bar("80%", 0.7)}{bar("60%", 0.5)}
-        <div style={{ display: "flex", gap: 6, marginTop: 4 }}>
-          <div style={{ flex: 1, height: 34, borderRadius: 8, background: "rgba(255,255,255,0.7)" }} />
-          <div style={{ flex: 1, height: 34, borderRadius: 8, background: "rgba(255,255,255,0.45)" }} />
-        </div>
-        {bar("70%", 0.4)}
-      </div>
-    );
-  }
-  if (kind === "system") {
-    return (
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, width: 150 }}>
-        {[0.9, 0.7, 0.5, 0.6, 0.85, 0.4, 0.5, 0.75, 0.6].map((o, i) => (
-          <div key={i} style={{ aspectRatio: "1", borderRadius: 8, background: `rgba(255,255,255,${o})` }} />
-        ))}
-      </div>
-    );
-  }
-  // web/browser frame
+function BrowserFrame({ url, accent, children, compact = false }) {
   return (
-    <div style={{ width: 190, height: 130, borderRadius: 12, background: "rgba(0,0,0,0.28)", border: "2px solid rgba(255,255,255,0.5)", overflow: "hidden" }}>
-      <div style={{ height: 20, background: "rgba(255,255,255,0.25)", display: "flex", alignItems: "center", gap: 5, padding: "0 10px" }}>
-        {[0, 1, 2].map(i => <div key={i} style={{ width: 7, height: 7, borderRadius: "50%", background: "rgba(255,255,255,0.7)" }} />)}
-      </div>
-      <div style={{ padding: 12, display: "flex", gap: 10 }}>
-        <div style={{ width: 40, display: "flex", flexDirection: "column", gap: 6 }}>
-          {bar("100%", 0.6)}{bar("80%", 0.4)}{bar("90%", 0.4)}
+    <div style={{
+      width: "100%", borderRadius: compact ? 10 : 12, overflow: "hidden",
+      background: "#1c1c2b", boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+      border: "1px solid rgba(255,255,255,0.12)", display: "flex", flexDirection: "column",
+      minHeight: 0,
+    }}>
+      <div style={{
+        height: compact ? 26 : 34, flexShrink: 0, background: "linear-gradient(#2b2b3d,#22222f)",
+        display: "flex", alignItems: "center", gap: 8, padding: compact ? "0 10px" : "0 12px",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+      }}>
+        <div style={{ display: "flex", gap: 5 }}>
+          {["#FF5F57", "#FEBC2E", "#28C840"].map(c => (
+            <span key={c} style={{ width: compact ? 7 : 9, height: compact ? 7 : 9, borderRadius: "50%", background: c, display: "block" }} />
+          ))}
         </div>
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
-          <div style={{ height: 26, borderRadius: 6, background: "rgba(255,255,255,0.8)" }} />
-          <div style={{ display: "flex", gap: 6 }}>
-            <div style={{ flex: 1, height: 30, borderRadius: 6, background: "rgba(255,255,255,0.5)" }} />
-            <div style={{ flex: 1, height: 30, borderRadius: 6, background: "rgba(255,255,255,0.65)" }} />
-          </div>
-          {bar("70%", 0.4)}
+        <div style={{
+          flex: 1, height: compact ? 14 : 18, borderRadius: 20, background: "rgba(255,255,255,0.08)",
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
+          fontSize: compact ? 8 : 10, color: "rgba(255,255,255,0.55)", fontFamily: "'Poppins',sans-serif",
+          padding: "0 10px", overflow: "hidden", whiteSpace: "nowrap",
+        }}>
+          <span style={{ width: 5, height: 5, borderRadius: "50%", background: accent || "#4CC9A8", flexShrink: 0 }} />
+          {url}
         </div>
       </div>
+      {children}
     </div>
   );
 }
 
-function UIUXProjectCard({ item, dark, card, border, text, muted }) {
+function UIUXProjectCard({ item, dark, card, border, text, muted, onOpen }) {
   const [hov, setHov] = useState(false);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
   const onMove = (e) => {
@@ -850,27 +931,41 @@ function UIUXProjectCard({ item, dark, card, border, text, muted }) {
     const r = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width - 0.5;
     const py = (e.clientY - r.top) / r.height - 0.5;
-    setTilt({ rx: -py * 8, ry: px * 8 });
+    setTilt({ rx: -py * 6, ry: px * 6 });
   };
   const reset = () => { setHov(false); setTilt({ rx: 0, ry: 0 }); };
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={reset} onMouseMove={onMove}
+      onClick={onOpen} role="button" tabIndex={0}
+      onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen(); } }}
+      aria-label={`${item.title} — open project gallery`}
       style={{
         background: card, border: `1px solid ${hov ? item.color : border}`,
-        borderRadius: 20, overflow: "hidden",
+        borderRadius: 20, overflow: "hidden", cursor: "pointer",
         transition: hov ? "border-color 0.3s, box-shadow 0.3s" : "transform 0.5s cubic-bezier(.34,1.4,.64,1), border-color 0.3s, box-shadow 0.3s",
         transform: `perspective(700px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) translateY(${hov ? -6 : 0}px)`,
         boxShadow: hov ? `0 16px 40px ${item.color}44` : "none",
       }}>
-      <div style={{ height: 200, position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", background: `radial-gradient(circle at 40% 35%, ${item.color}cc, ${item.color}55)` }}>
-        <UIUXMock kind={item.kind} color={item.color} />
-        <span style={{ position: "absolute", top: 14, left: 14, background: `${item.color}dd`, color: "#fff", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 10 }}>
-          {item.tags[0]}
+      <div style={{
+        height: 214, position: "relative", overflow: "hidden", padding: "30px 18px 0",
+        background: `radial-gradient(circle at 40% 30%, ${item.color}bb, ${item.color}44)`,
+      }}>
+        <BrowserFrame url={item.url} accent="#ffffff" compact>
+          <div style={{ height: 158, overflow: "hidden", background: "#fff" }}>
+            <img src={item.cover} alt={`${item.title} website design`} loading="lazy" decoding="async"
+              style={{ width: "100%", display: "block", transform: hov ? "translateY(-14px)" : "none", transition: "transform 0.6s ease" }} />
+          </div>
+        </BrowserFrame>
+        <span style={{ position: "absolute", top: 6, right: 14, background: "rgba(0,0,0,0.45)", color: "#fff", fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 10, backdropFilter: "blur(4px)" }}>
+          {item.shots.length + 1} screens
         </span>
       </div>
       <div style={{ padding: "18px 20px 20px" }}>
-        <h3 style={{ fontWeight: 700, fontSize: 15, marginBottom: 6, color: text }}>{item.title}</h3>
-        <p style={{ fontSize: 13, color: muted, lineHeight: 1.6, marginBottom: 12 }}>{item.desc}</p>
+        <h3 style={{ fontWeight: 700, fontSize: 16, marginBottom: 2, color: text }}>{item.title}</h3>
+        <div style={{ fontSize: 12, color: item.color, fontWeight: 600, marginBottom: 8 }}>{item.subtitle}</div>
+        <p style={{ fontSize: 13, color: muted, lineHeight: 1.6, marginBottom: 12 }}>
+          {item.desc.split(". ")[0]}.
+        </p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
           {item.tags.map(t => (
             <span key={t} style={{ fontSize: 11, background: dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)", color: muted, padding: "3px 10px", borderRadius: 8 }}>{t}</span>
