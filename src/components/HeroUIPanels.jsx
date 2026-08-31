@@ -17,15 +17,15 @@ const FigmaLogo = ({ s = 14 }) => (
 );
 
 const Mono = ({ txt, bg, fg }) => (
-  <div style={{ width: 20, height: 20, borderRadius: 5, background: bg, color: fg, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 11, fontFamily: "'Poppins',sans-serif", flexShrink: 0 }}>{txt}</div>
+  <div style={{ width: 20, height: 20, borderRadius: 5, background: bg, color: fg, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 11, fontFamily: "'Inter',sans-serif", flexShrink: 0 }}>{txt}</div>
 );
 
 const bar = (w, c = "#c9c9d2") => <div style={{ height: 6, width: w, borderRadius: 3, background: c }} />;
 
 // Light (Figma) panel base
-const PANEL = { background: "#fff", border: "1px solid #e6e6ec", borderRadius: 12, boxShadow: "0 20px 50px rgba(0,0,0,0.45)", fontFamily: "'Poppins',sans-serif", color: "#1a1a2e", overflow: "hidden" };
+const PANEL = { background: "#fff", border: "1px solid #e6e6ec", borderRadius: 12, boxShadow: "0 24px 50px -22px rgba(14,14,18,0.35)", fontFamily: "'Inter',sans-serif", color: "#1a1a2e", overflow: "hidden" };
 // Dark (Adobe) panel base
-const PANEL_D = { background: "#262626", border: "1px solid #3a3a3a", borderRadius: 10, boxShadow: "0 20px 50px rgba(0,0,0,0.55)", fontFamily: "'Poppins',sans-serif", color: "#e8e8ea", overflow: "hidden" };
+const PANEL_D = { background: "#262626", border: "1px solid #3a3a3a", borderRadius: 10, boxShadow: "0 24px 50px -22px rgba(14,14,18,0.45)", fontFamily: "'Inter',sans-serif", color: "#e8e8ea", overflow: "hidden" };
 const label = { fontSize: 9, fontWeight: 600, color: "#8b8a99", letterSpacing: 0.3 };
 const labelD = { fontSize: 9, fontWeight: 600, color: "#9a9aa0", letterSpacing: 0.3 };
 
